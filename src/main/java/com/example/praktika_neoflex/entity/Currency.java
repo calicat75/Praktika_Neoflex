@@ -1,6 +1,9 @@
 package com.example.praktika_neoflex.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.UUID;
 
 @Entity
 @Table(name = "currencies")
@@ -12,7 +15,7 @@ import lombok.*;
 public class Currency {
 
     @Id
-    @GenerateValue(strategy = GenerationType.UUID)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(nullable = false, unique = true, length = 3)

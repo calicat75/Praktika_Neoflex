@@ -1,8 +1,8 @@
 package com.example.praktika_neoflex.entity;
 
+import com.example.praktika_neoflex.enums.AccountType;
 import jakarta.persistence.*;
 import lombok.*;
-import ru.bank.accountservice.enums.AccountType;
 
 import java.util.UUID;
 
@@ -16,7 +16,6 @@ import java.util.UUID;
 public class AccountTypeEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Enumerated(EnumType.STRING)
