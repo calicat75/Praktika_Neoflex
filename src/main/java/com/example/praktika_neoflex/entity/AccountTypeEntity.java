@@ -24,5 +24,4 @@ public class AccountTypeEntity {
 
     @Column(columnDefinition = "TEXT")
     private String description;
-
 }
