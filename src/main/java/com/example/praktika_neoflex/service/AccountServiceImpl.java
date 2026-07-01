@@ -24,7 +24,7 @@ public class AccountServiceImpl implements AccountService {
 
         return mapper.toResponseList(
 
-                accountRepository.findAll()
+                accountRepository.findAllWithHistory()
 
         );
 
@@ -33,7 +33,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public AccountResponse getAccountById(UUID id) {
 
-        Account account = accountRepository.findById(id)
+        Account account = accountRepository.findByIdWithHistory(id)
 
                 .orElseThrow(() ->
                         new AccountNotFoundException(
@@ -49,7 +49,7 @@ public class AccountServiceImpl implements AccountService {
 
         return mapper.toResponseList(
 
-                accountRepository.findByOwnerId(customerId)
+                accountRepository.findByOwnerIdWithHistory(customerId)
 
         );
 

@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class PraktikaNeoflexApplicationTests {
 
     @Test
-    void contextLoads() {
+    void getAccounts() {
     }
 
 }
