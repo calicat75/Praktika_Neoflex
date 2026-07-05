@@ -1,22 +1,28 @@
 package com.example.praktika_neoflex.client;
 
+import com.example.praktika_neoflex.dto.client.CustomerDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.Map;
 import java.util.UUID;
 
 @Component
+@RequiredArgsConstructor
 public class CustomerClient {
 
-    public Map<String, Object> getCustomer(UUID customerId) {
+    private final RestTemplate restTemplate;
 
-        return Map.of(
+    private static final String URL =
+            "http://localhost:8081/api/customers/";
 
-                "id", customerId,
+    public CustomerDto getCustomer(UUID customerId) {
 
-                "firstName", "John",
+        return restTemplate.getForObject(
 
-                "lastName", "Doe"
+                URL + customerId,
+
+                CustomerDto.class
 
         );
 

@@ -1,27 +1,36 @@
 package com.example.praktika_neoflex.client;
 
+import com.example.praktika_neoflex.dto.client.LoanDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 @Component
+@RequiredArgsConstructor
 public class LoanClient {
 
-    public List<Map<String, Object>> getLoans(UUID customerId) {
+    private final RestTemplate restTemplate;
 
-        return List.of(
+    private static final String URL =
+            "http://localhost:8083/api/loans/customer/";
 
-                Map.of(
+    public List<LoanDto> getLoans(UUID customerId) {
 
-                        "loanId", UUID.randomUUID(),
+        return restTemplate.exchange(
 
-                        "amount", 100000
+                URL + customerId,
 
-                )
+                org.springframework.http.HttpMethod.GET,
 
-        );
+                null,
+
+                new ParameterizedTypeReference<List<LoanDto>>() {}
+
+        ).getBody();
 
     }
 

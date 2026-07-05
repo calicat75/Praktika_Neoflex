@@ -1,5 +1,6 @@
 package com.example.praktika_neoflex.controller;
 
+import com.example.praktika_neoflex.dto.response.AccountDetailsResponse;
 import com.example.praktika_neoflex.dto.response.AccountResponse;
 import com.example.praktika_neoflex.service.AccountService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,9 +30,7 @@ public class AccountController {
     @GetMapping("/{id}")
     @Operation(summary = "Получить счет по UUID")
     public AccountResponse getById(
-
             @PathVariable UUID id
-
     ) {
 
         return accountService.getAccountById(id);
@@ -39,14 +38,22 @@ public class AccountController {
     }
 
     @GetMapping("/customer/{customerId}")
-    @Operation(summary = "Получить все счета клиента")
+    @Operation(summary = "Получить счета клиента")
     public List<AccountResponse> getByCustomer(
-
             @PathVariable UUID customerId
-
     ) {
 
         return accountService.getAccountsByCustomer(customerId);
+
+    }
+
+    @GetMapping("/{id}/details")
+    @Operation(summary = "Получить счет вместе с данными клиента, кредитами и транзакциями")
+    public AccountDetailsResponse getDetails(
+            @PathVariable UUID id
+    ) {
+
+        return accountService.getAccountDetails(id);
 
     }
 

@@ -1,7 +1,6 @@
 package com.example.praktika_neoflex.service;
 
-
-
+import com.example.praktika_neoflex.dto.response.AccountDetailsResponse;
 import com.example.praktika_neoflex.dto.response.AccountResponse;
 
 import java.util.List;
@@ -14,5 +13,7 @@ public interface AccountService {
     AccountResponse getAccountById(UUID id);
 
     List<AccountResponse> getAccountsByCustomer(UUID customerId);
+
+    AccountDetailsResponse getAccountDetails(UUID id);
 
 }
