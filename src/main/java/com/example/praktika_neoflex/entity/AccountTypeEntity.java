@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "account_types")
+@Table(name = "account_types", schema = "accounts")
 @Getter
 @Setter
 @NoArgsConstructor
