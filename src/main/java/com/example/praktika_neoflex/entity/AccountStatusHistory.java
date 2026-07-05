@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "account_status_history")
+@Table(name = "account_status_history", schema = "accounts")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -44,5 +44,4 @@ public class AccountStatusHistory {
     public void prePersist() {
         changedAt = LocalDateTime.now();
     }
-
 }
