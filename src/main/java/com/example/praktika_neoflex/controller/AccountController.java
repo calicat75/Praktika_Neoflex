@@ -1,5 +1,7 @@
 package com.example.praktika_neoflex.controller;
 
+import com.example.praktika_neoflex.dto.client.CustomerDto;
+import com.example.praktika_neoflex.dto.request.ChangeAccountStatusRequest;
 import com.example.praktika_neoflex.dto.response.AccountDetailsResponse;
 import com.example.praktika_neoflex.dto.response.AccountResponse;
 import com.example.praktika_neoflex.service.AccountService;
@@ -54,6 +56,27 @@ public class AccountController {
     ) {
 
         return accountService.getAccountDetails(id);
+
+    }
+
+    @GetMapping("/customer/{customerId}/status")
+    @Operation(summary = "Получить статус клиента")
+    public CustomerDto getCustomerStatus(
+            @PathVariable UUID customerId
+    ) {
+
+        return accountService.getCustomerStatus(customerId);
+
+    }
+
+    @PatchMapping("/{id}/status")
+    @Operation(summary = "Изменить статус счета")
+    public AccountResponse changeStatus(
+            @PathVariable UUID id,
+            @RequestBody ChangeAccountStatusRequest request
+    ) {
+
+        return accountService.changeAccountStatus(id, request);
 
     }
 

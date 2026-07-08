@@ -12,6 +12,10 @@ import com.example.praktika_neoflex.entity.Account;
 import com.example.praktika_neoflex.exception.AccountNotFoundException;
 import com.example.praktika_neoflex.mapper.AccountMapper;
 import com.example.praktika_neoflex.repository.AccountRepository;
+import com.example.praktika_neoflex.repository.AccountStatusHistoryRepository;
+import com.example.praktika_neoflex.dto.request.ChangeAccountStatusRequest;
+import com.example.praktika_neoflex.entity.AccountStatusHistory;
+import com.example.praktika_neoflex.repository.AccountStatusHistoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +35,8 @@ public class AccountServiceImpl implements AccountService {
     private final LoanClient loanClient;
 
     private final TransactionClient transactionClient;
+
+    private final AccountStatusHistoryRepository historyRepository;
 
     @Override
     public List<AccountResponse> getAllAccounts() {
@@ -94,6 +100,45 @@ public class AccountServiceImpl implements AccountService {
                 transactions
 
         );
+
+    }
+
+    @Override
+    public CustomerDto getCustomerStatus(UUID customerId) {
+
+        return customerClient.getCustomer(customerId);
+
+    }
+
+    @Override
+    public AccountResponse changeAccountStatus(
+            UUID accountId,
+            ChangeAccountStatusRequest request
+    ) {
+
+        Account account = accountRepository.findById(accountId)
+                .orElseThrow(() ->
+                        new AccountNotFoundException(
+                                "Account not found: " + accountId
+                        ));
+
+        AccountStatusHistory history =
+                AccountStatusHistory.builder()
+                        .id(UUID.randomUUID())
+                        .account(account)
+                        .oldStatus(account.getAccountStatus())
+                        .newStatus(request.getStatus())
+                        .reason(request.getReason())
+                        .changedBy("system")
+                        .build();
+
+        historyRepository.save(history);
+
+        account.setAccountStatus(request.getStatus());
+
+        accountRepository.save(account);
+
+        return mapper.toResponse(account);
 
     }
 
