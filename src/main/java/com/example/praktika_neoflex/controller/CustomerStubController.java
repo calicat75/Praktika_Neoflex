@@ -25,14 +25,4 @@ public class CustomerStubController {
         );
 
     }
-
-    @GetMapping("/{id}/status")
-    public CustomerDto getStatus(
-            @PathVariable UUID id
-    ) {
-
-        return getCustomer(id);
-
-    }
-
 }

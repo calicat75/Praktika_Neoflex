@@ -59,7 +59,7 @@ public class AccountController {
 
     }
 
-    @GetMapping("/customer/{customerId}/status")
+/*    @GetMapping("/customer/{customerId}/status")
     @Operation(summary = "Получить статус клиента")
     public CustomerDto getCustomerStatus(
             @PathVariable UUID customerId
@@ -68,6 +68,7 @@ public class AccountController {
         return accountService.getCustomerStatus(customerId);
 
     }
+*/
 
     @PatchMapping("/{id}/status")
     @Operation(summary = "Изменить статус счета")
