@@ -16,7 +16,7 @@ public class TransactionClient {
     private final RestTemplate restTemplate;
 
     private static final String URL =
-            "http://clients-service:8084/api/transactions/account/";
+            "http://transactions-service/api/transactions/account/";
 
     public List<TransactionDto> getTransactions(UUID accountId) {
 
