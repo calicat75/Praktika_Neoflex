@@ -14,7 +14,7 @@ public class CustomerClient {
     private final RestTemplate restTemplate;
 
     private static final String URL =
-            "http://localhost:8081/api/customers/";
+            "http://clients-service:8081/api/customers/";
 
     public CustomerDto getCustomer(UUID customerId) {
 
