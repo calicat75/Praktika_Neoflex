@@ -16,7 +16,7 @@ public class LoanClient {
     private final RestTemplate restTemplate;
 
     private static final String URL =
-            "http://credit-service/api/loans/customer/";
+            "http://credit-service/api/v1/loans/client/";
 
     public List<LoanDto> getLoans(UUID customerId) {
 

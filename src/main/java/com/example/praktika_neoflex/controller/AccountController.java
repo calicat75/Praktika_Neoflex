@@ -49,6 +49,7 @@ public class AccountController {
 
     }
 
+    /*
     @GetMapping("/{id}/details")
     @Operation(summary = "Получить счет вместе с данными клиента, кредитами и транзакциями")
     public AccountDetailsResponse getDetails(
@@ -58,6 +59,7 @@ public class AccountController {
         return accountService.getAccountDetails(id);
 
     }
+    */
 
 /*    @GetMapping("/customer/{customerId}/status")
     @Operation(summary = "Получить статус клиента")
